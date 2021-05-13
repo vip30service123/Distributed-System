@@ -6,28 +6,14 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class Newspaper implements Media {
+public class Newspaper extends Media {
     String type;
-    String name;
 
     public Newspaper() {}
 
     Newspaper(String name, String type) {
         this.name = name;
         this.type = type;
-    }
-
-    public void add(String name, String type) {
-        try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "123456");
-            Statement statement = connection.createStatement();
-            String sql = "insert into media value (\"\",\"" + name +"\",\"" + type + "\")";
-            System.out.println(sql);
-            statement.executeUpdate(sql);
-            connection.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public String getType() {

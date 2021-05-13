@@ -23,7 +23,7 @@ public class Client {
                 Registry registry = LocateRegistry.getRegistry(1);
 
                 Newspaper newspaper = new Newspaper();
-                Media stub = (Media) registry.lookup("Newspaper");
+                MediaInterface stub = (MediaInterface) registry.lookup("Media");
 
                 System.out.println("Newspaper name: ");
                 ob = new Scanner(System.in);
@@ -33,7 +33,7 @@ public class Client {
                 ob = new Scanner(System.in);
                 newspaper.setType(ob.nextLine());
 
-                stub.add(newspaper.getName(), newspaper.getType());
+                stub.add(newspaper.getName(), newspaper.getType(), input);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -44,7 +44,7 @@ public class Client {
                 Registry registry = LocateRegistry.getRegistry(1);
 
                 Book book = new Book();
-                Media stub = (Media) registry.lookup("Book");
+                MediaInterface stub = (MediaInterface) registry.lookup("Media");
 
                 System.out.println("Book name: ");
                 ob = new Scanner(System.in);
@@ -54,7 +54,7 @@ public class Client {
                 ob = new Scanner(System.in);
                 book.setType(ob.nextLine());
 
-                stub.add(book.getName(), book.getType());
+                stub.add(book.getName(), book.getType(), input);
 
             } catch (Exception e) {
                 e.printStackTrace();

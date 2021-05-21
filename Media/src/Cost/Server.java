@@ -5,9 +5,10 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class Server implements MediaInterface{
+public class Server implements MediaInterface {
     public static void main(String[] args) {
         try {
             Server obj = new Server();
@@ -38,5 +39,49 @@ public class Server implements MediaInterface{
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public int countBook() {
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "123456");
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery("select count(*) from book");
+
+            int count = 0;
+
+            while (resultSet.next()) {
+                count = Integer.parseInt(resultSet.getString(1));
+            }
+
+            connection.close();
+
+            return count;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public int countNewspaper() {
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "123456");
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery("select count(*) from newspaper");
+
+            int count = 0;
+
+            while (resultSet.next()) {
+                count = Integer.parseInt(resultSet.getString(1));
+            }
+
+            connection.close();
+
+            return count;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }

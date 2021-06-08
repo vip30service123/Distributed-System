@@ -18,6 +18,8 @@ public class Server {
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
             DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
 
+            List<Student> students = StudentManagement.dataBaseToStudent("db2");
+
             String message = "";
             while (!message.equals("end")) {
                 message = dataInputStream.readUTF();
@@ -26,8 +28,6 @@ public class Server {
                     StudentManagement.addToDataBase("db2", student);
                 }
             }
-
-            List<Student> students = StudentManagement.dataBaseToStudent("db2");
 
             for (Student student : students) {
                 String XML = StudentManagement.convertDocToXMLString(StudentManagement.convertStudentToDoc(student));

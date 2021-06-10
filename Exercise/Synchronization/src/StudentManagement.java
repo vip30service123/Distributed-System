@@ -129,4 +129,11 @@ public class StudentManagement {
 
         return student;
     }
+    //Check Existed Student
+    public static boolean check(Student student, List<Student> students) {
+        for (Student student1 : students) {
+            if (student.getId() == student1.getId()) return false;
+        }
+        return true;
+    }
 }

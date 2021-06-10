@@ -17,12 +17,10 @@ import org.xml.sax.SAXException;
 
 public class Test {
     public static void main(String[] args) throws ParserConfigurationException, TransformerException {
-        List<Student> students = new ArrayList<>();
-        students.add(new Student(1, "1", 1));
-        students.add(new Student(2, "2", 2));
-        students.add(new Student(3, "3", 3));
-
-        Student student = new Student(1, "1", 1);
-        System.out.println(students.indexOf(student));
+        Student a = new Student(1, "A", 1.2f);
+        Student b = new Student(2, "B", 2.3f);
+        List<Student> c = new ArrayList<>();
+        c.add(b);
+        System.out.println(StudentManagement.check(a, c));
     }
 }

@@ -25,7 +25,9 @@ public class Server {
                 message = dataInputStream.readUTF();
                 if (!message.equals("end")) {
                     Student student = StudentManagement.docToStudent(StudentManagement.XMLStringToDocument(message));
-                    StudentManagement.addToDataBase("db2", student);
+                    if (StudentManagement.check(student, students)){
+                        StudentManagement.addToDataBase("db2", student);
+                    }
                 }
             }
 

@@ -30,7 +30,9 @@ public class Client {
                 message = dataInputStream.readUTF();
                 if (!message.equals("end")) {
                     Student student = StudentManagement.docToStudent(StudentManagement.XMLStringToDocument(message));
-                    StudentManagement.addToDataBase("db1", student);
+                    if (StudentManagement.check(student, students)){
+                        StudentManagement.addToDataBase("db1", student);
+                    }
                 }
             }
 
